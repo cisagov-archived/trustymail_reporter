@@ -30,7 +30,11 @@ expects the secrets in a different location.
 To run the `cisagov/trustymail_reporter` image via Docker:
 
 ```console
+<<<<<<< HEAD
 docker run cisagov/trustymail_reporter:1.5.6
+=======
+docker run cisagov/example:0.2.0
+>>>>>>> 0d48ebd47a28a887868ea3093e675e95f3843561
 ```
 
 ### Running with Docker Compose ###
@@ -42,8 +46,13 @@ docker run cisagov/trustymail_reporter:1.5.6
     version: "3.7"
 
     services:
+<<<<<<< HEAD
       trustymail_reporter:
         image: cisagov/trustymail_reporter:1.5.6
+=======
+      example:
+        image: cisagov/example:0.2.0
+>>>>>>> 0d48ebd47a28a887868ea3093e675e95f3843561
         volumes:
           - type: bind
             source: <your_log_dir>
@@ -101,8 +110,13 @@ environment variables.  See the
         file: database_creds.yml
 
     services:
+<<<<<<< HEAD
       trustymail_reporter:
         image: cisagov/trustymail_reporter:1.5.6
+=======
+      example:
+        image: cisagov/example:0.2.0
+>>>>>>> 0d48ebd47a28a887868ea3093e675e95f3843561
         volumes:
           - type: bind
             source: <your_log_dir>
@@ -141,16 +155,50 @@ environment variables.  See the
 1. Pull the new image:
 
     ```console
+<<<<<<< HEAD
     docker pull cisagov/trustymail_reporter:1.5.6
+=======
+    docker pull cisagov/example:0.2.0
+>>>>>>> 0d48ebd47a28a887868ea3093e675e95f3843561
     ```
 
 1. Recreate and run the container by following the [previous instructions](#running-with-docker).
+
+## Updating Python dependencies ##
+
+This image uses [Pipenv] to manage Python dependencies using a [Pipfile](https://github.com/pypa/pipfile).
+Both updating dependencies and changing the [Pipenv] configuration in `src/Pipfile`
+will result in a modified `src/Pipfile.lock` file that should be committed to the
+repository.
+
+> [!WARNING]
+> The `src/Pipfile.lock` as generated will fail `pre-commit` checks due to JSON formatting.
+
+### Updating dependencies ###
+
+If you want to update existing dependencies you would run the following command
+in the `src/` subdirectory:
+
+```console
+pipenv lock
+```
+
+### Modifying dependencies ###
+
+If you want to add or remove dependencies you would update the `src/Pipfile` file
+and then update dependencies as you would above.
+
+> [!NOTE]
+> You should only specify packages that are explicitly needed for your Docker
+> configuration. Allow [Pipenv] to manage the dependencies of the specified
+> packages.
 
 ## Image tags ##
 
 The images of this container are tagged with [semantic
 versions](https://semver.org) of the underlying example project that they
 containerize.  It is recommended that most users use a version tag (e.g.
+<<<<<<< HEAD
 `:1.5.6`).
 
 | Image:tag | Description |
@@ -161,6 +209,18 @@ containerize.  It is recommended that most users use a version tag (e.g.
 |`cisagov/trustymail_reporter:edge` | The most recent image built from a merge into the `develop` branch of this repository. |
 |`cisagov/trustymail_reporter:nightly` | A nightly build of the `develop` branch of this repository. |
 |`cisagov/trustymail_reporter:latest`| The most recent release image pushed to a container registry.  Pulling an image using the `:latest` tag [should be avoided.](https://vsupalov.com/docker-latest-tag/) |
+=======
+`:0.2.0`).
+
+| Image:tag | Description |
+|-----------|-------------|
+|`cisagov/example:0.2.0`| An exact release version. |
+|`cisagov/example:0.2`| The most recent release matching the major and minor version numbers. |
+|`cisagov/example:0`| The most recent release matching the major version number. |
+|`cisagov/example:edge` | The most recent image built from a merge into the `develop` branch of this repository. |
+|`cisagov/example:nightly` | A nightly build of the `develop` branch of this repository. |
+|`cisagov/example:latest`| The most recent release image pushed to a container registry.  Pulling an image using the `:latest` tag [should be avoided.](https://vsupalov.com/docker-latest-tag/) |
+>>>>>>> 0d48ebd47a28a887868ea3093e675e95f3843561
 
 See the [tags
 tab](https://hub.docker.com/r/cisagov/trustymail_reporter/tags) on
@@ -220,8 +280,13 @@ Build the image locally using this git repository as the [build context](https:/
 
 ```console
 docker build \
+<<<<<<< HEAD
   --tag cisagov/trustymail_reporter:1.5.6 \
   https://github.com/cisagov/trustymail_reporter.git#develop
+=======
+  --tag cisagov/example:0.2.0 \
+  https://github.com/cisagov/example.git#develop
+>>>>>>> 0d48ebd47a28a887868ea3093e675e95f3843561
 ```
 
 ## Cross-platform builds ##
@@ -251,7 +316,11 @@ Docker:
       --file Dockerfile-x \
       --platform linux/amd64 \
       --output type=docker \
+<<<<<<< HEAD
       --tag cisagov/trustymail_reporter:1.5.6 .
+=======
+      --tag cisagov/example:0.2.0 .
+>>>>>>> 0d48ebd47a28a887868ea3093e675e95f3843561
     ```
 
 ## Contributing ##
@@ -271,3 +340,5 @@ dedication](https://creativecommons.org/publicdomain/zero/1.0/).
 All contributions to this project will be released under the CC0
 dedication. By submitting a pull request, you are agreeing to comply
 with this waiver of copyright interest.
+
+[Pipenv]: https://pypi.org/project/pipenv/
