@@ -39,11 +39,11 @@ docker run cisagov/example:0.2.0
 
 ### Running with Docker Compose ###
 
-1. Create a `docker-compose.yml` file similar to the one below to use [Docker Compose](https://docs.docker.com/compose/).
+1. Create a `compose.yml` file similar to the one below to use [Docker Compose](https://docs.docker.com/compose/).
 
     ```yaml
     ---
-    version: "3.7"
+    name: skeleton-docker
 
     services:
 <<<<<<< HEAD
@@ -51,12 +51,26 @@ docker run cisagov/example:0.2.0
         image: cisagov/trustymail_reporter:1.5.6
 =======
       example:
+<<<<<<< HEAD
         image: cisagov/example:0.2.0
 >>>>>>> 0d48ebd47a28a887868ea3093e675e95f3843561
         volumes:
           - type: bind
             source: <your_log_dir>
             target: /home/cisa/shared
+=======
+        environment:
+          - ECHO_MESSAGE="Hello from docker compose"
+        image: cisagov/example:0.2.0
+        ports:
+          - protocol: tcp
+            published: "8080"
+            target: 8080
+        volumes:
+          - source: <your_log_dir>
+            target: /var/log
+            type: bind
+>>>>>>> eafe720594319b9503bd5e6d7e5b59e61ff9d6d5
     ```
 
 1. Start the container and detach:
@@ -86,6 +100,7 @@ environment variables.  See the
 
     ```
 
+<<<<<<< HEAD
 1. Next create an `aws_config` file in [this
    format](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html):
 
@@ -98,10 +113,13 @@ environment variables.  See the
     ```
 
 1. Then add the secrets to your `docker-compose.yml` file:
+=======
+1. Then add the secret to your `compose.yml` file:
+>>>>>>> eafe720594319b9503bd5e6d7e5b59e61ff9d6d5
 
     ```yaml
     ---
-    version: "3.7"
+    name: skeleton-docker
 
     secrets:
       aws_config:
@@ -115,6 +133,7 @@ environment variables.  See the
         image: cisagov/trustymail_reporter:1.5.6
 =======
       example:
+<<<<<<< HEAD
         image: cisagov/example:0.2.0
 >>>>>>> 0d48ebd47a28a887868ea3093e675e95f3843561
         volumes:
@@ -126,6 +145,22 @@ environment variables.  See the
             target: aws_config
           - source: database_creds
             target: database_creds.yml
+=======
+        environment:
+          - ECHO_MESSAGE="Hello from docker compose"
+        image: cisagov/example:0.2.0
+        ports:
+          - protocol: tcp
+            published: "8080"
+            target: 8080
+        secrets:
+          - source: quote_txt
+            target: quote.txt
+        volumes:
+          - source: <your_log_dir>
+            target: /var/log
+            type: bind
+>>>>>>> eafe720594319b9503bd5e6d7e5b59e61ff9d6d5
     ```
 
 ## Updating your container ##
@@ -189,9 +224,9 @@ If you want to add or remove dependencies you would update the `src/Pipfile` fil
 and then update dependencies as you would above.
 
 > [!NOTE]
-> You should only specify packages that are explicitly needed for your Docker
-> configuration. Allow [Pipenv] to manage the dependencies of the specified
-> packages.
+> You should only specify packages that are direct requirements of
+> your Docker configuration. Allow [Pipenv] to manage the dependencies
+> of the specified packages.
 
 ## Image tags ##
 
@@ -238,12 +273,17 @@ There are no ports exposed by this container.
 
 <!-- The following ports are exposed by this container: -->
 
+<<<<<<< HEAD
 <!-- | Port | Purpose        | -->
 <!-- |------|----------------| -->
 <!-- | 8080 | Example only; nothing is actually listening on the port | -->
 
 <!-- The sample [Docker composition](docker-compose.yml) publishes the -->
 <!-- exposed port at 8080. -->
+=======
+The sample [Docker composition](compose.yml) publishes the
+exposed port at 8080.
+>>>>>>> eafe720594319b9503bd5e6d7e5b59e61ff9d6d5
 
 ## Environment variables ##
 
