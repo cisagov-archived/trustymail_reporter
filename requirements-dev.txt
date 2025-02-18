@@ -5,6 +5,9 @@ mypy
 semver
 =======
 pipenv
+<<<<<<< HEAD
 # The bump-version script requires at least version 3 of semver.
 semver>=3
 >>>>>>> 0d48ebd47a28a887868ea3093e675e95f3843561
+=======
+>>>>>>> 0a2e987b9184ecff808992e27f4898ddc7cc5d22
